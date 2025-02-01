@@ -1,6 +1,7 @@
 #pragma once
 
 #include <stdint.h>
+#include <stdbool.h>
 
 //type aliases
 typedef float f32;
@@ -23,8 +24,9 @@ typedef struct arrayTemplate{
 
 int create(u64 length);
 void destroy(int *array);
-int *resize(int *array);
-int *append(int *array, int elem);
-int isempty(int *array);
+void resize(int *array);
+int append(int *array, int elem);
+void check(array* temp);
+
  
 

@@ -1,21 +1,61 @@
 #include <stdio.h>
 #include <stdlib.h>
+
 #include "aliases.h"
-//WE NEED TO IMPLEMENT THIS, NOT THE FUNCTION DECLERATION BUT DEFINE IT...
-array *create = (sizeof(array));
-int create(u64 length){
-    create->data = malloc(length*sizeof(int));
-    for(int i = 0; i < length; i++){
-        create->data[i] = 0;
+//we need to define these functions here!!!
+
+int create(array* temp, u64 length){
+    temp = (array*) malloc(sizeof(array));
+    if(temp == NULL){
+        exit(EXIT_FAILURE);
+    }
+    temp->data = (int*) malloc(length*sizeof(int));
+    for(int i = 0; i < length*sizeof(int); i++){
+        temp->data[i] = NULL;
+    }
+    temp->total = sizeof(temp->data); temp->used = 0;
+    return 0;
+}
+
+void destroy(array* temp){
+    free(temp);
+}
+
+void resize(array* temp, size_t sizeRet){
+    check(temp);
+    if((temp->total - temp->used) != 0){
+        return;
+    }
+    else{
+        temp->data = realloc(temp->data, 2 * temp->total * sizeof(int));
+        temp->total *= 2;
     }
 }
-void destroy(int *array){
-    
+int append(int *array, int elem){
+
 }
-int *resize(int *array);
-int *append(int *array, int elem);
-int isempty(int *array);
+
+void check(array* temp){
+    temp->used = 0;
+    for(int i = 0; i < temp->total; i++){
+        if(temp->data[i] != 0){
+            temp->used += 1;
+        }
+        else{
+            continue;
+        }        
+    }
+}
 
 
-//size is how much is used 
-//capacity is how much in total
+// typedef struct arrayTemplate{
+//     u64 used;
+//     u64 total;
+//     int *data;
+// }array;
+
+
+
+//used is how much is used 
+//total is how much in total
+
