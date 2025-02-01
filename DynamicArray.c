@@ -32,7 +32,7 @@ void resize(array* temp, size_t sizeRet){
     }
 }
 int append(int *array, int elem){
-
+    
 }
 
 void check(array* temp){
