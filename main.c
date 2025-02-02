@@ -10,6 +10,7 @@ int main() {
     append(myArray, 0, 10);
     append(myArray, 1, 20);
     append(myArray, 2, 30);
+    
 
     // Print the array to see if elements were added correctly
     for (int i = 0; i < myArray->used; i++) {
