@@ -25,7 +25,7 @@ typedef struct arrayTemplate{
 int create(u64 length);
 void destroy(int *array);
 void resize(int *array);
-int append(int *array, int elem);
+void append(int *array, int elem);
 void check(array* temp);
 
  

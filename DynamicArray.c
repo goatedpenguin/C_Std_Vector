@@ -2,26 +2,32 @@
 #include <stdlib.h>
 
 #include "aliases.h"
-//we need to define these functions here!!!
+void check(array* temp){
+    temp->used = 0;
+    for(int i = 0; i < temp->total; i++){
+        if(temp->data[i] != 0){
+            temp->used += 1;
+        }    
+    }
+}
 
-int create(array* temp, u64 length){
-    temp = (array*) malloc(sizeof(array));
-    if(temp == NULL){
+int create(array** temp, u64 length){
+    *temp = (array*) malloc(sizeof(array));
+    if(*temp == NULL){
         exit(EXIT_FAILURE);
     }
-    temp->data = (int*) malloc(length*sizeof(int));
-    for(int i = 0; i < length*sizeof(int); i++){
-        temp->data[i] = NULL;
-    }
-    temp->total = sizeof(temp->data); temp->used = 0;
+    (*temp)->data = (int*) calloc(length, sizeof(int));
+
+    (*temp)->total = length; (*temp)->used = 0;
     return 0;
 }
 
 void destroy(array* temp){
+    free(temp->data);
     free(temp);
 }
 
-void resize(array* temp, size_t sizeRet){
+void resize(array* temp){
     check(temp);
     if((temp->total - temp->used) != 0){
         return;
@@ -31,31 +37,33 @@ void resize(array* temp, size_t sizeRet){
         temp->total *= 2;
     }
 }
-int append(int *array, int elem){
-    
-}
+void append(array *temp, int pos, int val){
+    check(temp);
+    resize(temp); //auto checks if there is space or not...
 
-void check(array* temp){
-    temp->used = 0;
-    for(int i = 0; i < temp->total; i++){
-        if(temp->data[i] != 0){
-            temp->used += 1;
+    //case 1 we want to append in the beginning
+    if(pos == 0){
+    for(int i = temp->used-1; i > 0; i--){
+        temp->data[i] = temp->data[i-1];
         }
-        else{
-            continue;
-        }        
+        temp->data[0] = val;
+        temp->used++;
     }
+    //case 2 we want to append at the very end
+    else if(pos == temp->used){
+        temp->data[temp->used] = val;
+        temp->used++;
+    }
+    //case 3 we want to append in the middle
+    else{
+        for(int i = temp->used - 1; i >= pos; i--){
+            temp->data[i+1] = temp->data[i];
+        }
+        temp->data[pos] = val;
+        temp->used++;
+    }
+
 }
 
 
-// typedef struct arrayTemplate{
-//     u64 used;
-//     u64 total;
-//     int *data;
-// }array;
-
-
-
-//used is how much is used 
-//total is how much in total
 
