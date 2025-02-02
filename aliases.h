@@ -21,11 +21,10 @@ typedef struct arrayTemplate{
     int *data;
 }array;
 
-
-int create(u64 length);
-void destroy(int *array);
-void resize(int *array);
-void append(int *array, int elem);
+int create(array** temp, u64 length);
+void destroy(array* temp);
+void resize(array* temp);
+void append(array* temp, int pos, int val);
 void check(array* temp);
 
  
