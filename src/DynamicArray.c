@@ -11,17 +11,17 @@ void check(array* temp){
     }
 }
 
-int create(array** temp, u64 length){
-    *temp = (array*) malloc(sizeof(array));
-    if(*temp == NULL){
+array* create(u64 length) {
+    array* temp = (array*) malloc(sizeof(array));
+    if (temp == NULL) {
         exit(EXIT_FAILURE);
     }
-    (*temp)->data = (int*) calloc(length, sizeof(int));
+    temp->data = (int*) calloc(length, sizeof(int));
 
-    (*temp)->total = length; (*temp)->used = 0;
-    return 0;
+    temp->total = length;
+    temp->used = 0;
+    return temp;
 }
-
 void destroy(array* temp){
     free(temp->data);
     free(temp);

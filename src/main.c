@@ -4,8 +4,7 @@
 #include "aliases.h"
 
 int main() {
-    array* myArray;
-    create(&myArray, 5);
+    array* myArray = create(10);
 
     append(myArray, 0, 10);
     append(myArray, 1, 20);
