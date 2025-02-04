@@ -2,6 +2,7 @@
 #include <stdlib.h>
 
 #include "aliases.h"
+
 void check(array* temp){
     temp->used = 0;
     for(int i = 0; i < temp->total; i++){
