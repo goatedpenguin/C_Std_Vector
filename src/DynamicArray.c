@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-
 #include "aliases.h"
 
 void check(array* temp){
@@ -8,7 +7,7 @@ void check(array* temp){
     for(int i = 0; i < temp->total; i++){
         if(temp->data[i] != 0){
             temp->used += 1;
-        }    
+        }
     }
 }
 
