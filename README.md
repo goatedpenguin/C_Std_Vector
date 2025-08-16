@@ -1,4 +1,4 @@
-std::vector(only for ints rn) written in C, FUCK ALL THE CPP PROGRAMMERS
+std::vector(only for ints rn) written in C
 
 #########################################
 Implement a heap allocated resizable array using C's memory management functions:
@@ -20,4 +20,5 @@ void append(array* temp, int pos, int val);
 void check(array* temp);
 ```
 #########################################
+
 
